@@ -1,0 +1,8 @@
+{
+  "name": "figma plugin react starter",
+  "id": "",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "ui": "dist/ui.html",
+  "editorType": ["figma"]
+}
