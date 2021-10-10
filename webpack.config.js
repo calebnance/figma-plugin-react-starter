@@ -7,12 +7,16 @@ const webpack = require('webpack');
 module.exports = (env, argv) => ({
   mode: argv.mode === 'production' ? 'production' : 'development',
 
-  // This is necessary because Figma's 'eval' works differently than normal eval
+  // this is necessary because Figma's 'eval' works differently than normal eval
   devtool: argv.mode === 'production' ? false : 'inline-source-map',
+  devServer: {
+    open: ['/ui.html'],
+    static: './dist'
+  },
 
   entry: {
-    ui: './src/ui.js', // The entry point for your UI code
-    code: './src/code.js' // The entry point for your plugin code
+    ui: './src/ui.js', // entry point for ui code
+    code: './src/code.js' // entry point for plugin code
   },
 
   module: {
@@ -29,12 +33,12 @@ module.exports = (env, argv) => ({
           }
         }
       },
-      // Enables including CSS by doing "import './file.css'" in your TypeScript code
+      // enables including CSS by doing "import './file.css'" in your code
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
       },
-      // Allows you to use "<%= require('./file.svg') %>" in your HTML code to get a data URI
+      // allows you to use "<%= require('./file.svg') %>" in your HTML code to get a data URI
       // { test: /\.(png|jpg|gif|webp|svg|zip)$/, loader: [{ loader: 'url-loader' }] }
       {
         test: /\.svg/,
@@ -43,18 +47,19 @@ module.exports = (env, argv) => ({
     ]
   },
 
-  // Webpack tries these extensions for you if you omit the extension like "import './file'"
+  // webpack tries these extensions for you if you omit the extension like "import './file'"
   resolve: { extensions: ['.js'] },
 
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist') // Compile into a folder called "dist"
+    path: path.resolve(__dirname, 'dist'), // compile into a folder called "dist"
+    publicPath: '/'
   },
 
-  // Tells Webpack to generate "ui.html" and to inline "ui.js" into it
+  // tells webpack to generate "ui.html" and to inline "ui.js" into it
   plugins: [
     new webpack.DefinePlugin({
-      global: {} // Fix missing symbol error when running in developer VM
+      global: {} // fix missing symbol error when running in developer VM
     }),
     new HtmlWebpackPlugin({
       inject: 'body',

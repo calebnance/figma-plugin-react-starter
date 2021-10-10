@@ -14,9 +14,11 @@ _if you use nvm_, `nvm use` to switch to 14.15.5
 
 Install: `npm i`
 
-Run project locally: `npm start`
+Run Plugin locally: `npm start`
 
-Production build bundle: `npm run bundle`
+Run UI in Browser: `npm run serve` (only use this for easier UI updates, doesn't interact with Figma layer)
+
+Run Production bundle: `npm run bundle`
 
 ## Features
 
