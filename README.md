@@ -24,7 +24,7 @@ Run Production bundle: `npm run bundle`
 ## Features
 
 - Webpack 5 + React (javascript)
-- Production Bundling
+- Production Bundling + Zipped
 - Interact with UI in Browser
 
 ## Linting
