@@ -10,8 +10,10 @@ module.exports = (env, argv) => ({
   // this is necessary because Figma's 'eval' works differently than normal eval
   devtool: argv.mode === 'production' ? false : 'inline-source-map',
   devServer: {
-    open: ['/ui.html'],
-    static: './dist'
+    open: ['/ui.html']
+    // static: {
+    //   directory: path.join(__dirname, 'dist')
+    // }
   },
 
   entry: {
@@ -52,7 +54,7 @@ module.exports = (env, argv) => ({
 
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist'), // compile into a folder called "dist"
+    path: path.join(__dirname, 'dist'), // compile into a folder called "dist"
     publicPath: '/'
   },
 
