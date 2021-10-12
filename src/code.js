@@ -18,5 +18,8 @@ figma.ui.onmessage = (msg) => {
     figma.viewport.scrollAndZoomIntoView(nodes);
   }
 
-  figma.closePlugin();
+  // close plugin
+  if (msg.type === 'close-plugin') {
+    figma.closePlugin();
+  }
 };

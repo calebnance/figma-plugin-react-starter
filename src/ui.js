@@ -18,15 +18,18 @@ class App extends React.Component {
     );
   };
 
-  onCancel = () => {
-    parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*');
+  closePlugin = () => {
+    parent.postMessage({ pluginMessage: { type: 'close-plugin' } }, '*');
   };
 
   render() {
     return (
       <div>
-        <img alt="logo icon" src={require('./logo.svg')} />
-        <h2>Rectangle Creator</h2>
+        <div className="header">
+          <img alt="box icon" src={require('./box.svg')} />
+          <h3>A Few Examples</h3>
+        </div>
+
         <p>
           {`Count: `}
           <input ref={this.countRef} />
@@ -34,8 +37,8 @@ class App extends React.Component {
         <button id="create" onClick={this.onCreate} type="submit">
           Create
         </button>
-        <button onClick={this.onCancel} type="button">
-          Cancel
+        <button onClick={this.closePlugin} type="button">
+          Close Plugin
         </button>
       </div>
     );
