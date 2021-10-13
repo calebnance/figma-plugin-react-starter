@@ -3,41 +3,65 @@ import * as ReactDOM from 'react-dom';
 
 import './ui.css';
 
+const getSelectedCount = () => {
+  // post to code layer
+  parent.postMessage({ pluginMessage: { type: 'get-selected-count' } }, '*');
+};
+
+const closePlugin = () => {
+  // post to code layer
+  parent.postMessage({ pluginMessage: { type: 'close-plugin' } }, '*');
+};
+
 class App extends React.Component {
-  countRef = (element) => {
-    if (element) element.value = '5';
-    this.textbox = element;
-  };
+  constructor() {
+    super();
 
-  onCreate = () => {
-    const count = parseInt(this.textbox.value, 10);
+    this.state = {
+      selectedCount: null
+    };
 
-    parent.postMessage(
-      { pluginMessage: { type: 'create-rectangles', count } },
-      '*'
-    );
-  };
+    this.messageFromFigma = this.messageFromFigma.bind(this);
+  }
 
-  closePlugin = () => {
-    parent.postMessage({ pluginMessage: { type: 'close-plugin' } }, '*');
-  };
+  componentDidMount() {
+    window.addEventListener('message', this.messageFromFigma);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('message', this.messageFromFigma);
+  }
+
+  // main listener for all messages from Figma bridge
+  // https://www.figma.com/plugin-docs/how-plugins-run/
+  messageFromFigma(event) {
+    const { data, type } = event.data.pluginMessage;
+
+    // selected count response
+    if (type === 'selected-count') {
+      this.setState({
+        selectedCount: data.count
+      });
+    }
+  }
 
   render() {
+    const { selectedCount } = this.state;
+
     return (
       <div>
         <div className="header">
           <img alt="box icon" src={require('./box.svg')} />
-          <h3>A Few Examples</h3>
+          <h3>Examples</h3>
         </div>
 
-        <p>
-          {`Count: `}
-          <input ref={this.countRef} />
-        </p>
-        <button id="create" onClick={this.onCreate} type="submit">
-          Create
+        <button id="create" onClick={getSelectedCount} type="submit">
+          Get Selected Layer Count
         </button>
-        <button onClick={this.closePlugin} type="button">
+
+        {selectedCount && <p>{`Selected count: ${selectedCount}`}</p>}
+
+        <button onClick={closePlugin} type="button">
           Close Plugin
         </button>
       </div>

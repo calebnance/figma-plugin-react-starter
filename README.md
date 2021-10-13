@@ -39,6 +39,13 @@ Run Production bundle: `npm run bundle`
 
 # Helpful Links
 
+**Figma**
+
+- [Post Message to UI Layer](https://www.figma.com/plugin-docs/api/figma-ui/#postmessage)
+- [Close Plugin](https://www.figma.com/plugin-docs/api/figma-ui/#close)
+
+**Webpack**
+
 - [Webpack development](https://webpack.js.org/guides/development/)
 - [Webpack dev server](https://webpack.js.org/configuration/dev-server/)
 - [Webpack devtool](https://webpack.js.org/configuration/devtool/)

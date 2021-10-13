@@ -16,6 +16,7 @@
     "__html__": "readonly",
     "document": "readonly",
     "figma": "readonly",
-    "parent": "writable"
+    "parent": "writable",
+    "window": "readonly"
   }
 }
