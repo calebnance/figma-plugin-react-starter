@@ -52,14 +52,22 @@ class App extends React.Component {
       <main>
         <div className="header">
           <img alt="box icon" src={require('./box.svg')} />
-          <h3>Examples</h3>
+          <h1>Examples</h1>
         </div>
 
-        <button id="create" onClick={getSelectedCount} type="submit">
-          Get Selected Layer Count
-        </button>
+        <section>
+          <h4>Layer/Nodes</h4>
 
-        {selectedCount && <p>{`Selected count: ${selectedCount}`}</p>}
+          <div className="flex-row-space">
+            <button id="create" onClick={getSelectedCount} type="button">
+              Get Selected Count
+            </button>
+
+            {selectedCount !== null && (
+              <p>{`Selected count: ${selectedCount}`}</p>
+            )}
+          </div>
+        </section>
 
         <button onClick={closePlugin} type="button">
           Close Plugin
