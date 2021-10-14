@@ -1,5 +1,5 @@
-// https://www.figma.com/plugin-docs/api/figma/#showui
-figma.showUI(__html__);
+// https://www.figma.com/plugin-docs/api/properties/figma-showui/
+figma.showUI(__html__, { height: 400, width: 380 });
 
 // main listener on Figma scene side
 // https://www.figma.com/plugin-docs/api/figma-ui/#onmessage

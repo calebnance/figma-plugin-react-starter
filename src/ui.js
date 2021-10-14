@@ -49,7 +49,7 @@ class App extends React.Component {
     const { selectedCount } = this.state;
 
     return (
-      <div>
+      <main>
         <div className="header">
           <img alt="box icon" src={require('./box.svg')} />
           <h3>Examples</h3>
@@ -64,7 +64,7 @@ class App extends React.Component {
         <button onClick={closePlugin} type="button">
           Close Plugin
         </button>
-      </div>
+      </main>
     );
   }
 }
