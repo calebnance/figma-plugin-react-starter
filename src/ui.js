@@ -13,6 +13,11 @@ const zoomIntoView = () => {
   parent.postMessage({ pluginMessage: { type: 'zoom-into-view' } }, '*');
 };
 
+const traversing = () => {
+  // post to code layer
+  parent.postMessage({ pluginMessage: { type: 'traversing' } }, '*');
+};
+
 const closePlugin = () => {
   // post to code layer
   parent.postMessage({ pluginMessage: { type: 'close-plugin' } }, '*');
@@ -77,6 +82,12 @@ class App extends React.Component {
 
           <button onClick={zoomIntoView} type="button">
             Zoom into View Example
+          </button>
+
+          <div className="spacer-16" />
+
+          <button onClick={traversing} type="button">
+            Traversing Example
           </button>
         </section>
 

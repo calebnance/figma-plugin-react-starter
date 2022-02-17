@@ -35,10 +35,29 @@ figma.ui.onmessage = (msg) => {
   // zoom into view
   if (msg.type === 'zoom-into-view') {
     // https://www.figma.com/plugin-docs/api/figma-viewport/#scrollandzoomintoview
-    const testNode = figma.getNodeById('2:6');
-    const testNode2 = figma.getNodeById('2:5');
+    const testNode = figma.getNodeById('2:2');
+    const testNode2 = figma.getNodeById('6:8');
 
     figma.viewport.scrollAndZoomIntoView([testNode, testNode2]);
+  }
+
+  // traversing
+  if (msg.type === 'traversing') {
+    // https://www.figma.com/plugin-docs/api/figma-viewport/#scrollandzoomintoview
+    // const selectedImageNodes = figma.currentPage.selection.filter(
+    //   (node) => node.type === 'IMAGE'
+    // );
+
+    // https://www.figma.com/plugin-docs/accessing-document/#traversing-all-nodes-in-the-page
+    const nodeWrapper = figma.getNodeById('6:12');
+    console.log('nodeWrapper', nodeWrapper);
+    const imageNodes = nodeWrapper.findAll((node) => {
+      console.log(node);
+      console.log('===========');
+      return node.type === 'IMAGE';
+    });
+
+    console.log('imageNodes', imageNodes);
   }
 
   // close plugin
