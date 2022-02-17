@@ -32,9 +32,27 @@ figma.ui.onmessage = (msg) => {
     });
   }
 
+  // zoom into view
+  if (msg.type === 'zoom-into-view') {
+    // https://www.figma.com/plugin-docs/api/figma-viewport/#scrollandzoomintoview
+    const testNode = figma.getNodeById('2:6');
+    const testNode2 = figma.getNodeById('2:5');
+
+    figma.viewport.scrollAndZoomIntoView([testNode, testNode2]);
+  }
+
   // close plugin
   if (msg.type === 'close-plugin') {
     // https://www.figma.com/plugin-docs/api/figma-ui/#close
     figma.closePlugin();
   }
 };
+
+// listener on selection change
+// https://www.figma.com/plugin-docs/api/properties/figma-on/
+figma.on('selectionchange', () => {
+  console.log(figma.currentPage.selection);
+});
+
+// https://www.figma.com/plugin-docs/api/figma-ui/#resize
+// figma.ui.resize(300, 300);

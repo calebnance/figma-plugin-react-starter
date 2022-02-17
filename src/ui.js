@@ -8,6 +8,11 @@ const getSelectedCount = () => {
   parent.postMessage({ pluginMessage: { type: 'get-selected-count' } }, '*');
 };
 
+const zoomIntoView = () => {
+  // post to code layer
+  parent.postMessage({ pluginMessage: { type: 'zoom-into-view' } }, '*');
+};
+
 const closePlugin = () => {
   // post to code layer
   parent.postMessage({ pluginMessage: { type: 'close-plugin' } }, '*');
@@ -67,7 +72,15 @@ class App extends React.Component {
               <p>{`Selected count: ${selectedCount}`}</p>
             )}
           </div>
+
+          <div className="spacer-16" />
+
+          <button onClick={zoomIntoView} type="button">
+            Zoom into View Example
+          </button>
         </section>
+
+        <div className="spacer-16" />
 
         <button onClick={closePlugin} type="button">
           Close Plugin
