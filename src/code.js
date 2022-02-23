@@ -51,10 +51,16 @@ figma.ui.onmessage = (msg) => {
     // https://www.figma.com/plugin-docs/accessing-document/#traversing-all-nodes-in-the-page
     const nodeWrapper = figma.getNodeById('6:12');
     console.log('nodeWrapper', nodeWrapper);
+
+    // find images in page
     const imageNodes = nodeWrapper.findAll((node) => {
-      console.log(node);
-      console.log('===========');
-      return node.type === 'IMAGE';
+      const { fills } = node;
+      const imageFills =
+        fills === undefined
+          ? []
+          : fills.filter((fill) => fill.type === 'IMAGE');
+
+      return imageFills.length > 0;
     });
 
     console.log('imageNodes', imageNodes);
