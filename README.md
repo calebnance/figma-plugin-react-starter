@@ -11,7 +11,7 @@
 
 First, make sure you have [Node.js](https://nodejs.org) installed on your machine.
 
-_if you use nvm_, `nvm use` to switch to 14.15.5
+_if you use nvm_, `nvm use` to switch to 16.13.1
 
 Install: `npm i`
 

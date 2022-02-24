@@ -61,12 +61,14 @@ class App extends React.Component {
     return (
       <main>
         <div className="header">
-          <img alt="box icon" src={require('./box.svg')} />
+          <img alt="box icon" src={require('./assets/box.svg')} />
           <h1>Examples</h1>
         </div>
 
+        <div className="spacer-16" />
+
         <section>
-          <h4>Layer/Nodes</h4>
+          <h2>Reading the Figma Document</h2>
 
           <div className="flex-row-space">
             <button id="create" onClick={getSelectedCount} type="button">
@@ -84,11 +86,15 @@ class App extends React.Component {
             Zoom into View Example
           </button>
 
-          <div className="spacer-16" />
+          {selectedCount === 1 && (
+            <React.Fragment>
+              <div className="spacer-16" />
 
-          <button onClick={traversing} type="button">
-            Traversing Example
-          </button>
+              <button onClick={traversing} type="button">
+                Find Images | Traversing Example
+              </button>
+            </React.Fragment>
+          )}
         </section>
 
         <div className="spacer-16" />

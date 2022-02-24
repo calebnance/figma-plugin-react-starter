@@ -4,12 +4,13 @@ body {
 }
 
 h1 {
-  font-size: 18px;
+  font-size: 22px;
   margin: 0 0 0 8px;
 }
 
-h4 {
+h2 {
   border-bottom: 1px solid #efefef;
+  font-size: 18px;
   padding-bottom: 8px;
 }
 
@@ -53,7 +54,7 @@ button {
 }
 
 #create {
-  background: #124e78;
+  background: #325ffb;
   box-shadow: none;
   color: #ffffff;
 }
@@ -69,7 +70,7 @@ input:hover {
 }
 
 button:focus {
-  box-shadow: inset 0 0 0 2px #add5c0;
+  box-shadow: inset 0 0 0 2px #001dfd;
 }
 
 #create:focus {
@@ -77,5 +78,5 @@ button:focus {
 }
 
 input:focus {
-  box-shadow: inset 0 0 0 2px #add5c0;
+  box-shadow: inset 0 0 0 2px #001dfd;
 }

@@ -18,6 +18,7 @@ figma.ui.onmessage = (msg) => {
     }
 
     figma.currentPage.selection = nodes;
+
     // https://www.figma.com/plugin-docs/api/figma-viewport/#scrollandzoomintoview
     figma.viewport.scrollAndZoomIntoView(nodes);
   }
@@ -43,18 +44,16 @@ figma.ui.onmessage = (msg) => {
 
   // traversing
   if (msg.type === 'traversing') {
-    // https://www.figma.com/plugin-docs/api/figma-viewport/#scrollandzoomintoview
-    // const selectedImageNodes = figma.currentPage.selection.filter(
-    //   (node) => node.type === 'IMAGE'
-    // );
+    const [selectedNode] = figma.currentPage.selection;
+    const selectedNodeId = selectedNode.id;
 
     // https://www.figma.com/plugin-docs/accessing-document/#traversing-all-nodes-in-the-page
-    const nodeWrapper = figma.getNodeById('6:12');
-    console.log('nodeWrapper', nodeWrapper);
+    const nodeWrapper = figma.getNodeById(selectedNodeId);
 
     // find images in page
     const imageNodes = nodeWrapper.findAll((node) => {
       const { fills } = node;
+
       const imageFills =
         fills === undefined
           ? []
@@ -76,7 +75,10 @@ figma.ui.onmessage = (msg) => {
 // listener on selection change
 // https://www.figma.com/plugin-docs/api/properties/figma-on/
 figma.on('selectionchange', () => {
-  console.log(figma.currentPage.selection);
+  figma.ui.postMessage({
+    type: 'selected-count',
+    data: { count: figma.currentPage.selection.length }
+  });
 });
 
 // https://www.figma.com/plugin-docs/api/figma-ui/#resize
