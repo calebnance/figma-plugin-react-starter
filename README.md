@@ -15,7 +15,7 @@ _if you use nvm_, `nvm use` to switch to 16.13.1
 
 Install: `npm i`
 
-Run Plugin locally: `npm start`
+Run Plugin locally with hot-reload: `npm start`
 
 Run UI in Browser: `npm run serve` (only use this for easier UI updates, doesn't interact with Figma layer)
 

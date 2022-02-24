@@ -31,6 +31,10 @@ p {
   justify-content: space-between;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .spacer-16 {
   height: 16px;
   width: 100%;
@@ -79,4 +83,13 @@ button:focus {
 
 input:focus {
   box-shadow: inset 0 0 0 2px #001dfd;
+}
+
+.preview-image {
+  border: 1px solid #000000;
+  border-radius: 8px;
+  height: 64px;
+  object-fit: contain;
+  margin-bottom: 16px;
+  width: 64px;
 }

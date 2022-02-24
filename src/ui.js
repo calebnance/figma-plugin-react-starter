@@ -28,7 +28,8 @@ class App extends React.Component {
     super();
 
     this.state = {
-      selectedCount: null
+      selectedCount: null,
+      selectedImages: null
     };
 
     this.messageFromFigma = this.messageFromFigma.bind(this);
@@ -53,10 +54,16 @@ class App extends React.Component {
         selectedCount: data.count
       });
     }
+
+    if (type === 'selected-images') {
+      this.setState({
+        selectedImages: data.images
+      });
+    }
   }
 
   render() {
-    const { selectedCount } = this.state;
+    const { selectedCount, selectedImages } = this.state;
 
     return (
       <main>
@@ -93,6 +100,32 @@ class App extends React.Component {
               <button onClick={traversing} type="button">
                 Find Images | Traversing Example
               </button>
+            </React.Fragment>
+          )}
+
+          {selectedImages && (
+            <React.Fragment>
+              <div className="spacer-16" />
+
+              <div className="flex-row-space flex-wrap">
+                {selectedImages.map((image) => {
+                  const { bytes, id, name } = image;
+
+                  // convert bytes to base64
+                  const b64encoded = window.btoa(
+                    String.fromCharCode.apply(null, bytes)
+                  );
+
+                  return (
+                    <img
+                      key={id}
+                      alt={name}
+                      className="preview-image"
+                      src={`data:image/png;base64,${b64encoded}`}
+                    />
+                  );
+                })}
+              </div>
             </React.Fragment>
           )}
         </section>

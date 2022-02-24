@@ -3,7 +3,7 @@ figma.showUI(__html__, { height: 400, width: 380 });
 
 // main listener on Figma scene side
 // https://www.figma.com/plugin-docs/api/figma-ui/#onmessage
-figma.ui.onmessage = (msg) => {
+figma.ui.onmessage = async (msg) => {
   if (msg.type === 'create-rectangles') {
     const nodes = [];
 
@@ -49,10 +49,12 @@ figma.ui.onmessage = (msg) => {
 
     // https://www.figma.com/plugin-docs/accessing-document/#traversing-all-nodes-in-the-page
     const nodeWrapper = figma.getNodeById(selectedNodeId);
+    // console.log('nodeWrapper', nodeWrapper);
 
-    // find images in page
+    // find images in selected node/page
     const imageNodes = nodeWrapper.findAll((node) => {
       const { fills } = node;
+      // console.log('node', node);
 
       const imageFills =
         fills === undefined
@@ -62,7 +64,33 @@ figma.ui.onmessage = (msg) => {
       return imageFills.length > 0;
     });
 
-    console.log('imageNodes', imageNodes);
+    // loop through nodes that have images and grab bytes of image
+    const imagesData = await Promise.all(
+      imageNodes.map(async (image) => {
+        const { fills, id, name } = image;
+
+        // get the first fill that is an image type
+        const [imageFill] = fills.filter((fill) => fill.type === 'IMAGE');
+        const { imageHash } = imageFill;
+
+        // get image data by hash
+        // https://www.figma.com/plugin-docs/working-with-images/
+        const imageData = figma.getImageByHash(imageHash);
+        const bytes = await imageData.getBytesAsync();
+
+        return {
+          bytes,
+          id,
+          imageHash,
+          name
+        };
+      })
+    );
+
+    figma.ui.postMessage({
+      type: 'selected-images',
+      data: { images: imagesData }
+    });
   }
 
   // close plugin
