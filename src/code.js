@@ -78,8 +78,11 @@ figma.ui.onmessage = async (msg) => {
         const imageData = figma.getImageByHash(imageHash);
         const bytes = await imageData.getBytesAsync();
 
+        // https://www.figma.com/plugin-docs/api/figma/#base64encode
+        const base64 = figma.base64Encode(bytes);
+
         return {
-          bytes,
+          base64,
           id,
           imageHash,
           name

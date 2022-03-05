@@ -109,19 +109,14 @@ class App extends React.Component {
 
               <div className="flex-row-space flex-wrap">
                 {selectedImages.map((image) => {
-                  const { bytes, id, name } = image;
-
-                  // convert bytes to base64
-                  const b64encoded = window.btoa(
-                    String.fromCharCode.apply(null, bytes)
-                  );
+                  const { base64, id, name } = image;
 
                   return (
                     <img
                       key={id}
                       alt={name}
                       className="preview-image"
-                      src={`data:image/png;base64,${b64encoded}`}
+                      src={`data:image/png;base64,${base64}`}
                     />
                   );
                 })}
