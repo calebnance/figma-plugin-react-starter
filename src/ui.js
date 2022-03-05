@@ -1,7 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import './ui.css';
+// scss base
+import './ui.scss';
 
 const getSelectedCount = () => {
   // post to code layer
