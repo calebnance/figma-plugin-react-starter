@@ -1,6 +1,8 @@
 // https://www.figma.com/plugin-docs/api/properties/figma-showui/
 figma.showUI(__html__, { height: 400, width: 380 });
 
+console.clear();
+
 // main listener on Figma scene side
 // https://www.figma.com/plugin-docs/api/figma-ui/#onmessage
 figma.ui.onmessage = async (msg) => {
@@ -51,10 +53,18 @@ figma.ui.onmessage = async (msg) => {
     const nodeWrapper = figma.getNodeById(selectedNodeId);
     // console.log('nodeWrapper', nodeWrapper);
 
+    if (nodeWrapper.children === undefined) {
+      console.log('can only search on Nodes with children');
+      return null;
+    }
+
     // find images in selected node/page
     const imageNodes = nodeWrapper.findAll((node) => {
       const { fills } = node;
       // console.log('node', node);
+      // console.log('node.type', node.type);
+      // console.log('fills', fills);
+      // console.log('========');
 
       const imageFills =
         fills === undefined
