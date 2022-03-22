@@ -19,6 +19,14 @@ const traversing = () => {
   parent.postMessage({ pluginMessage: { type: 'traversing' } }, '*');
 };
 
+const resize = (height, width) => {
+  // post to code layer
+  parent.postMessage(
+    { pluginMessage: { type: 'resize-plugin', height, width } },
+    '*'
+  );
+};
+
 const closePlugin = () => {
   // post to code layer
   parent.postMessage({ pluginMessage: { type: 'close-plugin' } }, '*');
@@ -125,6 +133,12 @@ class App extends React.Component {
             </React.Fragment>
           )}
         </section>
+
+        <div className="spacer-16" />
+
+        <button onClick={() => resize(500, 600)} type="button">
+          Resize Plugin: 500H by 600W
+        </button>
 
         <div className="spacer-16" />
 

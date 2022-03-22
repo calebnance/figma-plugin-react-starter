@@ -113,6 +113,15 @@ figma.ui.onmessage = async (msg) => {
     }
   }
 
+  // resize plugin
+  // ///////////////////////////////////////////////////////////////////////////
+  if (type === 'resize-plugin') {
+    const { height, width } = msg;
+
+    // https://www.figma.com/plugin-docs/api/figma-ui/#resize
+    figma.ui.resize(width, height);
+  }
+
   // close plugin
   // ///////////////////////////////////////////////////////////////////////////
   if (type === 'close-plugin') {
@@ -129,6 +138,3 @@ figma.on('selectionchange', () => {
     data: { count: figma.currentPage.selection.length }
   });
 });
-
-// https://www.figma.com/plugin-docs/api/figma-ui/#resize
-// figma.ui.resize(300, 300);
