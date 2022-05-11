@@ -5,6 +5,7 @@
 - [Install & Build](#install--build)
 - [Features](#features)
 - [Linting](#linting)
+- [Release Notes](#release-notes)
 - [Helpful Links](#helpful-links)
 
 ## Install & Build
@@ -37,7 +38,24 @@ Run Production bundle: `npm run bundle`
   - eslint integration
   - automatic format on save (toggle format on save)
 
-# Helpful Links
+## Release Notes
+
+**version 1.1.0**
+
+- added [Dark Mode](https://www.figma.com/plugin-docs/css-variables/) support with the announcement of [Dark Mode for Figma](https://help.figma.com/hc/en-us/articles/5576781786647-Change-themes-in-Figma)
+- updated React and React DOM to v.18
+
+**version 1.0.0**
+
+- Examples of how to:
+  - communicate with Figma via postMessage bridge
+  - traverse a Figma frame for images
+  - zoom/scroll to a specific node in the Figma Document
+  - resize the plugin
+  - close the plugin programmatically
+- Started with React and React DOM to v.17
+
+## Helpful Links
 
 **Figma**
 

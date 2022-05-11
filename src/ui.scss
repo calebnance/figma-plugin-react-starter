@@ -1,5 +1,11 @@
+// using Figma color tokens where applicable
+// https://www.figma.com/plugin-docs/css-variables/#list-of-all-available-color-tokens
+
 body {
-  font: 14px sans-serif;
+  background-color: var(--figma-color-bg);
+  color: var(--figma-color-text);
+  font-family: Inter, sans-serif;
+  font-size: 13px;
   margin: 16px;
 }
 
@@ -9,7 +15,7 @@ h1 {
 }
 
 h2 {
-  border-bottom: 1px solid #efefef;
+  border-bottom: 1px solid var(--figma-color-border);
   font-size: 18px;
   padding-bottom: 8px;
 }
@@ -47,47 +53,39 @@ p {
 }
 
 button {
-  background: #ffffff;
-  border: none;
-  border-radius: 8px;
-  box-shadow: inset 0 0 0 1px #000000;
-  color: #000000;
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid var(--figma-color-text);
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: var(--figma-color-text);
   cursor: pointer;
+  display: flex;
+  font-size: 11px;
+  height: 32px;
+  justify-content: center;
+  line-height: 30px;
+  max-width: 200px;
   outline: none;
-  padding: 8px 15px;
+  padding: 0 11px;
+  text-align: center;
 }
 
-#create {
-  background: #325ffb;
+button.brand {
+  background-color: var(--figma-color-bg-brand);
+  border-color: var(--figma-color-bg-brand);
   box-shadow: none;
-  color: #ffffff;
-}
+  color: var(--figma-color-text-onbrand);
 
-input {
-  border: none;
-  outline: none;
-  padding: 8px;
-}
-
-input:hover {
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
-}
-
-button:focus {
-  box-shadow: inset 0 0 0 2px #001dfd;
-}
-
-#create:focus {
-  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.3);
-}
-
-input:focus {
-  box-shadow: inset 0 0 0 2px #001dfd;
+  &:focus {
+    border: 2px solid var(--figma-color-border-selected-strong);
+    padding: 0 10px;
+  }
 }
 
 .preview-image {
-  border: 1px solid #000000;
-  border-radius: 8px;
+  border: 1px solid var(--figma-color-border);
+  border-radius: 6px;
   height: 64px;
   object-fit: contain;
   margin-bottom: 16px;

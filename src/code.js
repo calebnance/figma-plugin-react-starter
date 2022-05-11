@@ -1,5 +1,5 @@
 // https://www.figma.com/plugin-docs/api/properties/figma-showui/
-figma.showUI(__html__, { height: 400, width: 380 });
+figma.showUI(__html__, { height: 400, width: 380, themeColors: true });
 
 console.clear();
 
@@ -62,7 +62,7 @@ figma.ui.onmessage = async (msg) => {
 
     // make sure the node selected has child nodes
     if (nodeWrapper.children === undefined) {
-      console.log('can only search on Nodes with children');
+      console.error('can only search on Nodes with children');
     } else {
       // find images in selected node/page
       const imageNodes = nodeWrapper.findAll((node) => {

@@ -65,7 +65,7 @@ class App extends React.Component {
 
           <div className="flex-row-space">
             <button
-              id="create"
+              className="brand"
               onClick={() => sendToFigma('get-selected-count')}
               type="button"
             >
