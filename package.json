@@ -11,6 +11,11 @@
   },
   "author": "Caleb Nance",
   "license": "MIT",
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-dev-utils": "^11.0.4",
+    "react-dom": "^18.1.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.15.8",
     "@babel/plugin-proposal-class-properties": "^7.14.5",
@@ -47,11 +52,6 @@
     "webpack": "^5.70.0",
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.3.1"
-  },
-  "dependencies": {
-    "react": "^17.0.2",
-    "react-dev-utils": "^11.0.4",
-    "react-dom": "^17.0.2"
   },
   "prettier": {
     "singleQuote": true,
