@@ -12,6 +12,7 @@
   "author": "Caleb Nance",
   "license": "MIT",
   "dependencies": {
+    "prop-types": "^15.8.1",
     "react": "^18.1.0",
     "react-dev-utils": "^11.0.4",
     "react-dom": "^18.1.0"

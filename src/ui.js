@@ -4,6 +4,9 @@ import { createRoot } from 'react-dom/client';
 // scss base
 import './ui.scss';
 
+// icon(s)
+import SvgBox from './icons/Svg.Box';
+
 // function for message bridge to figma
 const sendToFigma = (type, data) => {
   parent.postMessage({ pluginMessage: { type, ...data } }, '*');
@@ -54,7 +57,7 @@ class App extends React.Component {
     return (
       <main>
         <div className="header">
-          <img alt="box icon" src={require('./assets/box.svg')} />
+          <SvgBox />
           <h1>Examples</h1>
         </div>
 
