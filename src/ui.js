@@ -1,35 +1,12 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 // scss base
 import './ui.scss';
 
-const getSelectedCount = () => {
-  // post to code layer
-  parent.postMessage({ pluginMessage: { type: 'get-selected-count' } }, '*');
-};
-
-const zoomIntoView = () => {
-  // post to code layer
-  parent.postMessage({ pluginMessage: { type: 'zoom-into-view' } }, '*');
-};
-
-const traversing = () => {
-  // post to code layer
-  parent.postMessage({ pluginMessage: { type: 'traversing' } }, '*');
-};
-
-const resize = (height, width) => {
-  // post to code layer
-  parent.postMessage(
-    { pluginMessage: { type: 'resize-plugin', height, width } },
-    '*'
-  );
-};
-
-const closePlugin = () => {
-  // post to code layer
-  parent.postMessage({ pluginMessage: { type: 'close-plugin' } }, '*');
+// function for message bridge to figma
+const sendToFigma = (type, data) => {
+  parent.postMessage({ pluginMessage: { type, ...data } }, '*');
 };
 
 class App extends React.Component {
@@ -87,7 +64,11 @@ class App extends React.Component {
           <h2>Reading the Figma Document</h2>
 
           <div className="flex-row-space">
-            <button id="create" onClick={getSelectedCount} type="button">
+            <button
+              id="create"
+              onClick={() => sendToFigma('get-selected-count')}
+              type="button"
+            >
               Get Selected Count
             </button>
 
@@ -98,7 +79,7 @@ class App extends React.Component {
 
           <div className="spacer-16" />
 
-          <button onClick={zoomIntoView} type="button">
+          <button onClick={() => sendToFigma('zoom-into-view')} type="button">
             Zoom into View Example
           </button>
 
@@ -106,7 +87,7 @@ class App extends React.Component {
             <React.Fragment>
               <div className="spacer-16" />
 
-              <button onClick={traversing} type="button">
+              <button onClick={() => sendToFigma('traversing')} type="button">
                 Find Images | Traversing Example
               </button>
             </React.Fragment>
@@ -136,13 +117,18 @@ class App extends React.Component {
 
         <div className="spacer-16" />
 
-        <button onClick={() => resize(500, 600)} type="button">
+        <button
+          onClick={() => {
+            sendToFigma('resize-plugin', { height: 500, width: 600 });
+          }}
+          type="button"
+        >
           Resize Plugin: 500H by 600W
         </button>
 
         <div className="spacer-16" />
 
-        <button onClick={closePlugin} type="button">
+        <button onClick={() => sendToFigma('close-plugin')} type="button">
           Close Plugin
         </button>
       </main>
@@ -150,4 +136,7 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const container = document.getElementById('root');
+const root = createRoot(container);
+
+root.render(<App />);
