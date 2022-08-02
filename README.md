@@ -14,13 +14,33 @@ First, make sure you have [Node.js](https://nodejs.org) installed on your machin
 
 _if you use nvm_, `nvm use` to switch to 16.13.1
 
-Install: `npm i`
+**Install:**
 
-Run Plugin locally with hot-reload: `npm start`
+```bash
+npm i
+```
 
-Run UI in Browser: `npm run serve` (only use this for easier UI updates, doesn't interact with Figma layer)
+**Run Plugin locally with hot-reload:**
 
-Run Production bundle: `npm run bundle`
+```bash
+npm start
+```
+
+**Run UI in Browser:**
+
+***(only use this for easier UI updates, doesn't interact with Figma layer)***
+
+```bash
+npm run serve
+```
+
+**Run Production bundle:**
+
+**this bundles your plugin into a `.zip` for easy distribution, created within `/dist_zips/`
+
+```bash
+npm run bundle
+```
 
 ## Features
 
